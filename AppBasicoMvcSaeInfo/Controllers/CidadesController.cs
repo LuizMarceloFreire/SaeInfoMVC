@@ -10,6 +10,7 @@ using AppBasicoMvcSaeInfo.Models;
 using AppBasicoMvcSaeInfo.Data.Interface;
 using AppBasicoMvcSaeInfo.Data.Repositorio;
 using ReflectionIT.Mvc.Paging;
+using AppBasicoMvcSaeInfo.Data.Services;
 
 namespace AppBasicoMvcSaeInfo.Controllers
 {
@@ -17,17 +18,21 @@ namespace AppBasicoMvcSaeInfo.Controllers
     {
         private readonly MeuDbContext _context;
         private readonly ICidadeRepositorio _cidadeRepositorio;
+        private readonly CidadeService _cidadeService;
 
         public CidadesController(MeuDbContext context)
         {
             _context = context;
             _cidadeRepositorio = new CidadeRepositorio(_context);
+            _cidadeService = new CidadeService();
         }
 
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(string sortOrder, int page = 1)
         {
             var cidades = _cidadeRepositorio.ObterTodosAlunosInclude().AsNoTracking().OrderBy(x => x.Nome);
+            cidades = OrdernarGrid(sortOrder, cidades);
             var model = await PagingList.CreateAsync(cidades, 5, page);
+
             return View(model);
         }
 
@@ -108,6 +113,15 @@ namespace AppBasicoMvcSaeInfo.Controllers
         {
             await _cidadeRepositorio.Remover(id);
             return RedirectToAction("Index");
+        }
+
+        public IOrderedQueryable<Cidade> OrdernarGrid(string sortOrder, IOrderedQueryable<Cidade> cidade)
+        {
+            ViewData["OrdenarCidade"] = string.IsNullOrEmpty(sortOrder) ? "cidadeDesc" : "";
+            ViewData["OrdenarEstado"] = string.IsNullOrEmpty(sortOrder) ? "estadoDesc" : "";
+
+            cidade = _cidadeService.OrdernarGrid(sortOrder, cidade);
+            return cidade;
         }
     }
 }

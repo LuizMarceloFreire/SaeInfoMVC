@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AppBasicoMvcSaeInfo.Models.Aluno>
+
+@{
+    ViewData["Title"] = "BuscarAlunoPorCidade";
+}
+
+<h1>Aluno por Cidade</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Aluno
+            </th>
+            <th>
+                Cidade
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco.Cidade.Nome)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

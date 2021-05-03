@@ -1,0 +1,53 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<AppBasicoMvcSaeInfo.Models.Cidade>
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cidades</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Criar">Nova Cidade</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Sigla
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado.Nome)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado.Sigla)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger" asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Alunos navegacao">
+    <vc:pager paging-list="@Model" />
+</nav>

@@ -1,0 +1,64 @@
+
+CREATE TABLE Cidade
+(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	Nome Varchar(100) null,
+    DataAlteracaoRegistro Date null,
+	UsuarioAlteracaoRegistro varchar(100) null,
+	EstadoId int null,
+	FOREIGN KEY (EstadoId) REFERENCES Estado (Id)
+);
+
+CREATE TABLE Estado
+(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	Nome Varchar(100) null,
+    Sigla varchar(2) null,
+    DataAlteracaoRegistro Date null,
+	UsuarioAlteracaoRegistro varchar(100) null
+);
+
+CREATE TABLE Responsaveis(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	Nome Varchar(100) null,
+	Rg Varchar(100) null,
+	Cpf varchar(11) null,
+	Profissao Varchar(100) null,
+	Telefone int null,
+	DataCadastro Date null,
+	DataAlteracaoRegistro Date null,
+	UsuarioAlteracaoRegistro Varchar(100) null
+);
+
+CREATE TABLE Endereco(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	Logradouro Varchar(100) null,
+	Numero int NULL,
+	Complemento Varchar(100) null,
+	Cep Varchar(100) null,
+	Bairro Varchar(100) null,
+	DataAlteracaoRegistro Date null,
+	UsuarioAlteracaoRegistro Varchar(100) null,
+	CidadeId int null,
+	FOREIGN KEY (CidadeId) REFERENCES Cidade (Id)
+);
+
+CREATE TABLE Aluno(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	Nome Varchar(100) null,
+	Cpf varchar(14) null,
+	Rg varchar(9) null,
+	DataNascimento Date null,
+	Matricula INT NULL,
+	Idade INT NULL,
+	Sexo varchar(15) null,
+	Email VARCHAR(50) NULL,
+	Telefone int null,
+    DataCadastro Date null,
+	DataAlteracaoRegistro Date null,
+	UsuarioAlteracaoRegistro Varchar(100) null,
+	EnderecoId int null,
+	FOREIGN KEY (EnderecoId) REFERENCES Endereco (EnderecoId),
+	ResponsavelId int Null,
+	FOREIGN KEY (ResponsavelId) REFERENCES Responsavel (Id)
+);

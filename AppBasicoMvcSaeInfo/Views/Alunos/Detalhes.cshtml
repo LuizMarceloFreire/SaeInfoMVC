@@ -1,0 +1,76 @@
+﻿@model AppBasicoMvcSaeInfo.Models.Aluno
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Aluno</h4>
+    <hr />
+    <div class="row">
+        <div class="row col-12">
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Nome: </p> @Html.DisplayFor(model => model.Nome)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">RG: </p>  @Html.DisplayFor(model => model.Rg)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">CPF: </p> @Html.DisplayFor(model => model.Cpf)
+            </div>
+        </div>
+        <div class="row col-12">
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Data de Nascimento: </p> @Html.DisplayFor(model => model.DataDeNascimento)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">N° Matricula: </p> @Html.DisplayFor(model => model.Matricula)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Idade: </p> @Html.DisplayFor(model => model.Idade)
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Sexo: </p>  @Html.DisplayFor(model => model.Sexo)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">E-mail: </p>  @Html.DisplayFor(model => model.Email)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Telefone: </p> @Html.DisplayFor(model => model.Telefone)
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Logradouro: </p> @Html.DisplayFor(model => model.Endereco.Logradouro)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">n°: </p> @Html.DisplayFor(model => model.Endereco.Numero)
+            </div>
+            <div class="col-sm-4">
+                <p class="font-weight-bold">Bairro: </p>  @Html.DisplayFor(model => model.Endereco.Bairro)
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-sm-2">
+                <p class="font-weight-bold">CEP: </p>@Html.DisplayFor(model => model.Endereco.Cep)
+            </div>
+            <div class="col-sm-2">
+                <p class="font-weight-bold">Cidade: </p> @Html.DisplayFor(model => model.Endereco.Cidade.Nome)
+            </div>
+            <div class="col-sm-2">
+                <p class="font-weight-bold">Estado: </p>  @Html.DisplayFor(model => model.Endereco.Cidade.Estado.Sigla)
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Editar" asp-route-id="@Model.Id">Editar</a> 
+    <a asp-action="Index">Voltar</a>
+</div>

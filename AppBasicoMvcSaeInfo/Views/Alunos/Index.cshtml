@@ -1,0 +1,70 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<AppBasicoMvcSaeInfo.Models.Aluno>
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Alunos</h1>
+<a class="btn btn-primary" asp-action="Criar">Novo Aluno</a>
+<br />
+<br />
+
+<table id="myTable" class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenarNome"]"> Nome</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenarCpf"]">CPF</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenarSexo"]">Sexo</a>
+            </th>
+            <th>
+                <a>Telefone</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenarDataCadastro"]">Data Cadastro</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenarCidade"]">Cidade</a>
+            </th>
+            <th><a>Ação</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr id="tr">
+            <td id="td">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco.Cidade.Nome)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                <a class="btn btn-danger" asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Alunos navegacao">
+    <vc:pager paging-list="@Model" />
+</nav>

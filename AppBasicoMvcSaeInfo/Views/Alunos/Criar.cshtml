@@ -1,0 +1,224 @@
+﻿@model AppBasicoMvcSaeInfo.Models.Aluno
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Cadastro de Aluno</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="row col-12">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mRg );", @maxlength = 9 } })
+                @Html.ValidationMessageFor(model => model.Rg, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @class = "form-control", @id = "cpf", onkeydown = "javascript: fMasc( this, mCPF );", @maxlength = 14 } })
+                @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row col-12">
+
+            <div class="col-md-3">
+                <label>Data Nascimento</label>
+                @Html.EditorFor(model => model.DataDeNascimento.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DataDeNascimento, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Idade, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Idade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Idade, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Sexo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mTel );", @maxlength = 13 } })
+                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <br />
+        <h5>Endereço</h5>
+        <hr />
+        <div class="row col-12">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Endereco.Logradouro, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Endereco.Logradouro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Endereco.Logradouro, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Endereco.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Endereco.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Endereco.Numero, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Endereco.Complemento, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Endereco.Complemento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Endereco.Complemento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row col-12">
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Endereco.Cep, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Endereco.Cep, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mCEP );", @maxlength = 10 } })
+                @Html.ValidationMessageFor(model => model.Endereco.Cep, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Endereco.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Endereco.Bairro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Endereco.Bairro, "", new { @class = "text-danger" })
+            </div>
+
+            @*<div class="col-md-3">
+                    @Html.LabelFor(model => model.Endereco.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownListFor(model => model.Endereco.Cidade.Nome, ViewBag.Cidades as List<SelectListItem>)
+                    @Html.ValidationMessageFor(model => model.Endereco.Cidade.Nome, "", new { @class = "text-danger" })
+                </div>*@
+            @*
+                @Html.LabelFor(model => model.Endereco.Cidade.Estado.Sigla, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.Endereco.Cidade.Nome, new SelectList(Model.Endereco.Cidade.Estado.Sigla, "Sigla"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Cidade.Estado.Sigla, "", new { @class = "text-danger" })
+                </div>*@
+        </div>
+        <br />
+        <h5>Responsável</h5>
+        <hr />
+        <div class="row col-12">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Responsaveis.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Responsaveis.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Responsaveis.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Responsaveis.Cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Responsaveis.Cpf, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mCPF );", @maxlength = 14 } })
+                @Html.ValidationMessageFor(model => model.Responsaveis.Cpf, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Responsaveis.Rg, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Responsaveis.Rg, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mRg );", @maxlength = 9 } })
+                @Html.ValidationMessageFor(model => model.Responsaveis.Rg, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Responsaveis.Profissao, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Responsaveis.Profissao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Responsaveis.Profissao, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Responsaveis.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Responsaveis.Telefone, new { htmlAttributes = new { @class = "form-control", onkeydown = "javascript: fMasc( this, mTel );", @maxlength = 13 } })
+                @Html.ValidationMessageFor(model => model.Responsaveis.Telefone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-12">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+            <div class="col-md-6">
+                @Html.ActionLink("Voltar", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    function fMasc(objeto, mascara) {
+        obj = objeto
+        masc = mascara
+        setTimeout("fMascEx()", 1)
+    }
+
+    function fMascEx() {
+        obj.value = masc(obj.value);
+    }
+
+    function mTel(tel) {
+        tel = tel.replace(/\D/g, "")
+        tel = tel.replace(/^(\d)/, "($1")
+        tel = tel.replace(/(.{3})(\d)/, "$1)$2")
+        if (tel.length == 9) {
+            tel = tel.replace(/(.{1})$/, "-$1")
+        } else if (tel.length == 10) {
+            tel = tel.replace(/(.{2})$/, "-$1")
+        } else if (tel.length == 11) {
+            tel = tel.replace(/(.{3})$/, "-$1")
+        } else if (tel.length == 12) {
+            tel = tel.replace(/(.{4})$/, "-$1")
+        } else if (tel.length > 12) {
+            tel = tel.replace(/(.{4})$/, "-$1")
+        }
+        return tel;
+    }
+
+    function mCPF(cpf) {
+        cpf = cpf.replace(/\D/g, "")
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+        return cpf;
+    }
+
+    function mCEP(cep) {
+        cep = cep.replace(/\D/g, "")
+        cep = cep.replace(/^(\d{2})(\d)/, "$1.$2")
+        cep = cep.replace(/\.(\d{3})(\d)/, ".$1-$2")
+        return cep;
+    }
+
+    function mRg(rg) {
+        rg = rg.replace(/\D/g, "");
+        rg = rg.replace(/(\d{1})(\d{3})(\d{3})$/, "$1.$2.$3");
+        return rg;
+    }
+
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src='@Url.Content("~/Views/Scripts/Criar.js")'></script>
+}

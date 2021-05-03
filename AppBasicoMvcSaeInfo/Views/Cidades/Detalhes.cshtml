@@ -1,0 +1,40 @@
+﻿@model AppBasicoMvcSaeInfo.Models.Cidade
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Cidade</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <p class="font-weight-bold">Cidade: </p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            <p class="font-weight-bold">Estado: </p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            <p class="font-weight-bold">Sigla: </p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado.Sigla)
+        </dd>
+        <dt class="col-sm-2">
+            <p class="font-weight-bold">Aluno Vinculado: </p>
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.AlunosVinculados
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@Model.Id">Editar</a> 
+    <a asp-action="Index">Voltar</a>
+</div>
